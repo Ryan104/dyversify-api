@@ -8,7 +8,6 @@ const httpStatus = require('http-status')
  * Create a group and add the current user as a member
  */
 exports.create = async (req, res, next) => {
-  console.log(req.user)
   try {
     // add current user
     req.body.users = [req.user._id]
@@ -35,7 +34,10 @@ exports.create = async (req, res, next) => {
 exports.index = async (req, res, next) => {
   // TODO: Filter by current user (once relationship is established)
   try {
-    const groups = await Group.find({ users: req.user._id }).populate('users').exec()
+    const groups = await Group.find({ users: req.user._id })
+      .populate('users')
+      .populate('songs')
+      .exec()
     res.status(httpStatus.OK)
     res.send(groups.map(group => group.transform()))
   } catch (error) {
