@@ -7,7 +7,7 @@ const songRouter = require('./song.router')
 
 router.get('/status', (req, res) => { res.send({status: 'OK'}) }) // api status
 
-router.use('/auth', authRouter) // mount auth paths
+router.use('/auth', authRouter)
 
 router.use('/group', groupRouter)
 

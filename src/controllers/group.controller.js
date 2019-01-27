@@ -9,9 +9,7 @@ const httpStatus = require('http-status')
  */
 exports.create = async (req, res, next) => {
   try {
-    // add current user
     req.body.users = [req.user._id]
-
     const group = new Group(req.body)
     const savedGoup = await group.save()
 
@@ -29,7 +27,7 @@ exports.create = async (req, res, next) => {
 }
 
 /**
- * Get all groups that user belongs to
+ * Get all groups
  */
 exports.index = async (req, res, next) => {
   // TODO: Filter by current user (once relationship is established)

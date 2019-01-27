@@ -10,9 +10,7 @@ const httpStatus = require('http-status')
  */
 exports.create = async (req, res, next) => {
   try {
-    // add current user
     req.body.user = req.user._id
-
     const song = new Song(req.body)
     const savedSong = await song.save()
 
